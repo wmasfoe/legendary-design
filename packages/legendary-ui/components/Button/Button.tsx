@@ -8,17 +8,17 @@ const Button = (props: ButtonProps) => {
     btnType: 'primary',
     disabled: false
   })
-  const classnames = useClassNames(['btn', `btn-${btnType}`, props.className], {
+  const classnames = useClassNames(['l-button', 'btn', `btn-${btnType}`, props.className], {
     disabled,
   })
 
-  return <div className="l-button">
+  return <>
     {
       btnType === 'link' ?
         <a {...other} className={classnames}>{children}</a>:
         <button {...other} className={classnames} disabled={disabled}>{ children }</button>
     }
-  </div>;
+  </>;
 };
 
 export default memo(Button);

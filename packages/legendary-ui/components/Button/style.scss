@@ -1,14 +1,103 @@
+@use "sass:math";
+@import "../../styles//mixins//button.scss";
+@import "../../styles/variable/index.scss";
+
+@layer base {
 .l-button {
-  @layer base {
-    & .btn {
-      outline: none;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: 400;
-      color: #333;
-      border-radius: 4px;
+    &.btn {
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+      text-align: center;
+      vertical-align: middle;
       cursor: pointer;
+      outline: none;
+
+      border: $btn-border-width solid transparent;
+      font-weight: $btn-font-weight;
+      line-height: $btn-line-height;
+      box-shadow: $btn-box-shadow;
+      @include button-size(
+        $btn-padding-x,
+        $btn-padding-y,
+        $btn-font-size,
+        $border-radius
+      );
+      transition: $btn-transition;
+
+      &:focus {
+        // 获取焦点后，不展示边框
+        outline: none;
+      }
+
+      // button 禁用态
+      &.disabled,
+      &[disabled] {
+        cursor: not-allowed;
+        opacity: $btn-disabled-opacity;
+        box-shadow: none;
+        > * {
+          pointer-events: none;
+        }
+      }
+
+      // button 大小
+      &.btn-lg {
+        @include button-size(
+          $btn-padding-x-lg,
+          $btn-padding-y-lg,
+          $font-size-lg,
+          $border-radius-lg
+        );
+      }
+      &.btn-sm {
+        @include button-size(
+          $btn-padding-x-sm,
+          $btn-padding-y-sm,
+          $font-size-sm,
+          $border-radius-sm
+        );
+      }
+
+      // button 样式
+      &.btn-primary {
+        @include button-style($primary, $primary, $white);
+      }
+
+      &.btn-danger {
+        @include button-style($danger, $danger, $white);
+      }
+      &.btn-default {
+        @include button-style(
+          $white,
+          $gray-400,
+          $body-color,
+          $white,
+          $primary,
+          $primary
+        );
+      }
+    }
+
+    &.btn-link {
+      font-weight: $font-weight-normal;
+      color: $btn-link-color;
+      text-decoration: $link-decoration;
+      box-shadow: none;
+      &:hover {
+        color: $btn-link-hover-color;
+        text-decoration: $link-hover-decoration;
+      }
+      &:focus,
+      &.focus {
+        text-decoration: $link-hover-decoration;
+        box-shadow: none;
+      }
+      &.disabled,
+      &:disabled {
+        color: $btn-link-disabled-color;
+        pointer-events: none;
+      }
     }
   }
 }

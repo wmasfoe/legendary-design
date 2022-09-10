@@ -1,0 +1,36 @@
+// 控制 button 大小
+@mixin button-size($padding-x, $padding-y, $font-size, $border-radius) {
+  padding: $padding-y $padding-x;
+  border-radius: $border-radius;
+  font-size: $font-size;
+}
+
+// 控制 button 样式
+@mixin button-style(
+  $background,
+  $border,
+  $color,
+  $hover-background: lighten($background, 7.5%),
+  $hover-border: lighten($border, 10%),
+  $hover-color: $color
+) {
+  color: $color;
+  background: $background;
+  border-color: $border;
+
+  // hover focus 态 TODO 按下之后，需要点击其他地方才会回复未点击状态，是否需要做自动恢复
+  &:hover,
+  &:focus,
+  &.focus {
+    color: $hover-color;
+    background: $hover-background;
+    border-color: $hover-border;
+
+    &:disabled,
+    &.disabled {
+      color: $color;
+      background: $background;
+      border-color: $border;
+    }
+  }
+}
