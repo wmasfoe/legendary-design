@@ -1,4 +1,4 @@
-import { memo } from "react"
+import React, { memo } from "react"
 import type { ButtonProps } from './types'
 import { useClassNames, useDefaultProps } from '@legendary/hooks'
 import './style.scss'

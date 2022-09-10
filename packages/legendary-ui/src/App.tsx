@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Button } from '../components'
+// import { Button } from '../components'
+import '../dist/style.css'
+// @ts-ignore
+import { Button } from './../dist/componentsName.es'
 function App() {
   const [type, setType] = useState('primary')
 
