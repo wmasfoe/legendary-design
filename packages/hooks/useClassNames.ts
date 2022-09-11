@@ -43,7 +43,7 @@ function useClassNames(
     eachObject(res, partialClassnames)
     partialClassName = res.join(' ')
   }
-  return `${firstClassName} ${partialClassName}`
+  return partialClassName ? `${firstClassName} ${partialClassName}` : firstClassName
 }
 
 export { useClassNames };
