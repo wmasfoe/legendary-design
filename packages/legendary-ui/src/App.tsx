@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 // import { Button } from '../components'
-import '../dist/style.css'
-// @ts-ignore
-import { Button } from './../dist/componentsName.es'
+import '../dist/es/assets/style.05ea6895.css'
+import Button from './../dist/es/s/Button/Button'
 function App() {
   const [type, setType] = useState('primary')
 
