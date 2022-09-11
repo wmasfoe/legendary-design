@@ -1,58 +1,57 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import typescript from '@rollup/plugin-typescript'
-import path from 'path'
-import 'tslib'
-
-// https://vitejs.dev/config/
-// export default defineConfig({
-//   plugins: [react()],
-//   build: {
-//     rollupOptions: {
-//       // 请确保外部化那些你的库中不需要的依赖
-//       external: [],
-//       output: {
-//         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-//         globals: {
-//           react: 'React',
-//         },
-//       },
-//     },
-//     lib: {
-//       entry: './components/index.ts',
-//       name: 'legendary-design',
-//     },
-//   },
-// })
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import dts from "vite-plugin-dts";
+import path from "path";
+import "tslib";
 
 const resolvePath = (str: string) => path.resolve(__dirname, str);
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    dts({
+      //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
+      tsConfigFilePath: "./tsconfig.json",
+      outputDir: './dist/es'
+    }),
+    //因为这个插件默认打包到es下，我们想让lib目录下也生成声明文件需要再配置一个
+    dts({
+      outputDir: "./dist/lib",
+      tsConfigFilePath: "./tsconfig.json",
+    }),
+  ],
   build: {
-    lib: {
-      entry: resolvePath("components/index.ts"),
-      name: "componentsName",
-      fileName: format => `componentsName.${format}.js`,
-    },
+    target: "modules",
+    //打包文件目录
+    outDir: "es",
+    //压缩
+    minify: true,
+    //css分离 //
+    cssCodeSplit: true,
     rollupOptions: {
-        external: ["react", "react-dom"],
-        output: {
-          globals: {
-            react: "react",
-            "react-dom": "react-dom",
-          },
+      //忽略打包vue文件
+      external: ["react", "react-dom"],
+      input: ["./components"],
+      output: [
+        {
+          format: "esm", //不用打包成.es.js,这里我们想把它打包成.js
+          entryFileNames: "[name].js", //让打包目录和我们目录对应
+          preserveModules: true, //配置打包根目录
+          dir: "dist/es",
+          preserveModulesRoot: "./components",
         },
-        plugins: [
-          typescript({
-            target: "es2015",
-            rootDir: resolvePath("components/"),
-            declaration: true,
-            declarationDir: resolvePath("dist"),
-            exclude: resolvePath("node_modules/**"),
-            allowSyntheticDefaultImports: true,
-          }),
-        ],
+        {
+          format: "cjs",
+          entryFileNames: "[name].js", //让打包目录和我们目录对应
+          preserveModules: true, //配置打包根目录
+          dir: "dist/lib",
+          preserveModulesRoot: "./components",
+        },
+      ],
+    },
+    lib: {
+      entry: "./index.ts",
+      formats: ["es", "cjs"],
     },
   },
-})
+});
