@@ -50,7 +50,7 @@ export default defineConfig({
       ],
     },
     lib: {
-      entry: "./index.ts",
+      entry: "./components/index.ts",
       formats: ["es", "cjs"],
     },
   },
