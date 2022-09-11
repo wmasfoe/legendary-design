@@ -8,6 +8,7 @@
     "preinstall": "node ./scripts/preinstall.js",
     "dev": "cd packages/legendary-ui && pnpm run dev",
     "dev:docs": "cd packages/docs && pnpm run start",
+    "dev:demo": "cd packages/demo && pnpm run dev",
     "build:docs": "cd packages/docs && pnpm run build",
     "build:components": "cd packages/legendary-ui && pnpm run build"
   },

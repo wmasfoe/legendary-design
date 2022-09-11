@@ -22,6 +22,25 @@ importers:
       eslint-plugin-jsx-a11y: registry.npmmirror.com/eslint-plugin-jsx-a11y/6.6.1_eslint@8.23.0
       sass: registry.npmmirror.com/sass/1.54.9
 
+  packages/demo:
+    specifiers:
+      '@legendary/components': workspace:^0.0.0
+      '@types/react': ^18.0.18
+      '@types/react-dom': ^18.0.6
+      '@vitejs/plugin-react': ^2.1.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      vite: ^3.1.0
+    dependencies:
+      '@legendary/components': link:../legendary-ui
+      react: registry.npmmirror.com/react/18.2.0
+      react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
+    devDependencies:
+      '@types/react': registry.npmmirror.com/@types/react/18.0.18
+      '@types/react-dom': registry.npmmirror.com/@types/react-dom/18.0.6
+      '@vitejs/plugin-react': registry.npmmirror.com/@vitejs/plugin-react/2.1.0_vite@3.1.0
+      vite: registry.npmmirror.com/vite/3.1.0
+
   packages/docs:
     specifiers:
       '@docusaurus/core': 2.0.0-beta.21

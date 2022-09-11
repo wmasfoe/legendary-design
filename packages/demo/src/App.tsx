@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import { Button } from '../components'
-import '../dist/es/assets/style.05ea6895.css'
-import Button from './../dist/es/s/Button/Button'
+import { Button } from '@legendary/components/dist/es/index'
 function App() {
   const [type, setType] = useState('primary')
 
