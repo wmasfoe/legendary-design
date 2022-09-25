@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react'
-// import { Button } from '../components'
-import '../dist/es/assets/style.05ea6895.css'
-import Button from './../dist/es/s/Button/Button'
-function App() {
-  const [type, setType] = useState('primary')
+import { useState, useEffect } from 'react'
+import { Button } from '../components'
+import type { BaseButtonProps } from '../components'
+type BtnType = BaseButtonProps['btnType']
+const App = () => {
+  const [type, setType] = useState<BtnType>('primary')
+
+  useEffect(() => {
+    setTimeout(() => {
+      setType('danger')
+    }, 1000)
+  }, [])
 
   return <div>
-    <Button onClick={() => {console.log('123')}}>
+    <Button btnType={type} onClick={() => {console.log('123')}}>
       hello world
     </Button>
   </div>

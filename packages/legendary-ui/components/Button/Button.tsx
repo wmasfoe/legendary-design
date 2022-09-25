@@ -1,8 +1,8 @@
-import React, { memo } from "react"
-import type { ButtonProps } from './types'
-import { useClassNames, useDefaultProps } from '@legendary/hooks'
-import './style.scss'
-
+import React, { memo } from 'react'
+import type { ButtonProps, BaseButtonProps } from './types';
+export type { BaseButtonProps, ButtonProps } from './types'
+import { useClassNames, useDefaultProps } from '@legendary/hooks';
+import './style.scss';
 const Button = (props: ButtonProps) => {
   const { btnType, children, disabled, ...other } = useDefaultProps(props, {
     btnType: 'primary',
