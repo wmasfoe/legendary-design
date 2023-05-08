@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import type { ButtonProps, BaseButtonProps } from './types';
+import type { ButtonProps } from './types';
 export type { BaseButtonProps, ButtonProps } from './types'
 import { useClassNames, useDefaultProps } from '@legendary/hooks';
 import './style.scss';

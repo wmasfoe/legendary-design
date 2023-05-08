@@ -1,3 +1,4 @@
+import type { ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
 export type ButtonType = 'link' | 'primary' | 'danger' | 'warning' | 'loading' | 'success'
 
 export enum ButtonSize {
@@ -15,8 +16,8 @@ export interface BaseButtonProps {
 }
 
 // 原生 button 属性 + 组件需要的属性
-export type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>
+export type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>
 // 原生 a 标签属性 + 组件需要属性
-export type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>
+export type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
 // 最终Button 组件的属性，Partial 将类型属性变为可选
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
