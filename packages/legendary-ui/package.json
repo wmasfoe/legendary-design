@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build": "rollup -c ./rollup.config.js"
   },
   "dependencies": {
     "@legendary/hooks": "workspace:^1.0.0",
